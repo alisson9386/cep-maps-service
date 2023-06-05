@@ -1,9 +1,10 @@
 import './App.css';
+import './assets/style.scss'
 import Inicial from './Components/Inicial';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Inicial/>
     </div>
   );
