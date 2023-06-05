@@ -1,6 +1,7 @@
 import { Component } from "react";
 import CepService from "../services/CepService";
 
+
 class Inicial extends Component{
     constructor(props){
         super(props)
@@ -17,23 +18,25 @@ class Inicial extends Component{
 
     buscarCep = () => {
 
-        var lat = '';
-        var lng = '';
+        
+
         var cep = this.state.cep;
 
 
-        CepService.buscaCep(cep).then((res) =>{
+        CepService.buscaOpenCage(cep).then((res) =>{
             console.log(res.data);
+            const { lat, lng } = res.data.results[0].geometry;
+            console.log(lat, lng)
         })
 
     }
     render() {
         return (
-            <div>
+            <div className="container">
                 <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">CEP</label>
-                    <input type="number" className="form-control" id="exampleInputEmail1" value={this.state.cep} onChange={this.changeCepHandler}/>
+                    <input type="text" className="form-control" id="exampleInputEmail1" value={this.state.cep} onChange={this.changeCepHandler}/>
                 </div>
                 <button type="button" className="btn btn-primary" onClick={this.buscarCep}>Submit</button>
                 </form>
